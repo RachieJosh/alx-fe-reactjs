@@ -5,7 +5,7 @@ const AddRecipeForm = () => {
   const [recipeData, setRecipeData] = useState({
     title: "",
     ingredients: "",
-    instructions: "",
+    steps: "", // Updated to include steps
   });
 
   // State to hold validation errors
@@ -13,7 +13,7 @@ const AddRecipeForm = () => {
 
   // Handle input change
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // Destructure target and value from the event
     setRecipeData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -31,8 +31,9 @@ const AddRecipeForm = () => {
     } else if (recipeData.ingredients.split(",").length < 2) {
       validationErrors.ingredients = "Please list at least two ingredients";
     }
-    if (!recipeData.instructions) {
-      validationErrors.instructions = "Instructions are required";
+    if (!recipeData.steps) {
+      // Validation for steps
+      validationErrors.steps = "Preparation steps are required";
     }
     return validationErrors;
   };
@@ -47,7 +48,7 @@ const AddRecipeForm = () => {
       // Here you can handle the submission of the recipe data
       console.log("Recipe submitted:", recipeData);
       // Reset form and errors if needed
-      setRecipeData({ title: "", ingredients: "", instructions: "" });
+      setRecipeData({ title: "", ingredients: "", steps: "" }); // Reset steps here
       setErrors({});
     }
   };
@@ -92,21 +93,22 @@ const AddRecipeForm = () => {
           )}
         </div>
         <div className="mb-4">
-          <label className="block mb-2" htmlFor="instructions">
-            Instructions
+          <label className="block mb-2" htmlFor="steps">
+            Preparation Steps
           </label>
           <textarea
-            id="instructions"
-            name="instructions"
-            value={recipeData.instructions}
+            id="steps"
+            name="steps" // Updated to match state variable
+            value={recipeData.steps}
             onChange={handleChange}
             className={`w-full p-2 border ${
-              errors.instructions ? "border-red-500" : "border-gray-300"
+              errors.steps ? "border-red-500" : "border-gray-300"
             } rounded`}
           />
-          {errors.instructions && (
-            <p className="text-red-500 text-sm">{errors.instructions}</p>
-          )}
+          {errors.steps && (
+            <p className="text-red-500 text-sm">{errors.steps}</p>
+          )}{" "}
+          {/* Display error if any */}
         </div>
         <button
           type="submit"
