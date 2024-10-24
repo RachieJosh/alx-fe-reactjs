@@ -35,7 +35,7 @@ const RegistrationForm = () => {
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.username}
+          // Removed the value assignment here
         />
         {formik.touched.username && formik.errors.username ? (
           <div>{formik.errors.username}</div>
@@ -50,7 +50,7 @@ const RegistrationForm = () => {
           type="email"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.email}
+          // Removed the value assignment here
         />
         {formik.touched.email && formik.errors.email ? (
           <div>{formik.errors.email}</div>
@@ -65,7 +65,7 @@ const RegistrationForm = () => {
           type="password"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.password}
+          // Removed the value assignment here
         />
         {formik.touched.password && formik.errors.password ? (
           <div>{formik.errors.password}</div>
