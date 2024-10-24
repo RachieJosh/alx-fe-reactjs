@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useRecipeStore } from "./recipeStore";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom"; // Import Link
 
 const RecipeList = () => {
   const { filteredRecipes, recipes } = useRecipeStore((state) => ({
@@ -8,10 +9,9 @@ const RecipeList = () => {
     recipes: state.recipes,
   }));
 
-  // If recipes are initially set, filter them for the first time
+  // Initialize filtered recipes when the component mounts
   useEffect(() => {
     if (recipes.length > 0) {
-      // Initialize filtered recipes when the component mounts
       useRecipeStore.getState().setSearchTerm("");
     }
   }, [recipes]);
@@ -21,7 +21,11 @@ const RecipeList = () => {
       <SearchBar /> {/* Include the search bar */}
       {filteredRecipes.map((recipe) => (
         <div key={recipe.id}>
-          <h3>{recipe.title}</h3>
+          <Link to={`/recipe/${recipe.id}`}>
+            {" "}
+            {/* Link to the recipe details */}
+            <h3>{recipe.title}</h3>
+          </Link>
           <p>{recipe.description}</p>
         </div>
       ))}
