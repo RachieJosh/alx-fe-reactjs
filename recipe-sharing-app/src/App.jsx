@@ -1,20 +1,24 @@
-import { Routes, Route } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom"; // Import Routes and Route
 import RecipeList from "./components/RecipeList";
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeDetails from "./components/RecipeDetails";
+import EditRecipeForm from "./components/EditRecipeForm";
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <h1>Recipe Sharing App</h1>
-      <AddRecipeForm />
-      <Routes>
-        <Route path="/" element={<RecipeList />} />
-        <Route path="/recipe/:recipeId" element={<RecipeDetails />} />{" "}
-        {/* Route for recipe details */}
-      </Routes>
-    </div>
+    <Routes>
+      {" "}
+      {/* Use Routes to wrap your Route components */}
+      <Route path="/" element={<RecipeList />} /> {/* Main recipe list */}
+      <Route path="/add" element={<AddRecipeForm />} />{" "}
+      {/* Form to add a recipe */}
+      <Route path="/recipes/:id" element={<RecipeDetails />} />{" "}
+      {/* Recipe details page */}
+      <Route path="/edit/:id" element={<EditRecipeForm />} />{" "}
+      {/* Edit recipe page */}
+    </Routes>
   );
-}
+};
 
 export default App;
