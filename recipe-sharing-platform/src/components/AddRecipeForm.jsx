@@ -5,7 +5,7 @@ const AddRecipeForm = () => {
   const [recipeData, setRecipeData] = useState({
     title: "",
     ingredients: "",
-    steps: "", // Updated to include steps
+    steps: "", // Include steps in the state
   });
 
   // State to hold validation errors
@@ -13,7 +13,7 @@ const AddRecipeForm = () => {
 
   // Handle input change
   const handleChange = (e) => {
-    const { name, value } = e.target; // Destructure target and value from the event
+    const { name, value } = e.target; // Use e.target.value
     setRecipeData((prevData) => ({
       ...prevData,
       [name]: value,
@@ -32,7 +32,7 @@ const AddRecipeForm = () => {
       validationErrors.ingredients = "Please list at least two ingredients";
     }
     if (!recipeData.steps) {
-      // Validation for steps
+      // Validate steps
       validationErrors.steps = "Preparation steps are required";
     }
     return validationErrors;
@@ -98,9 +98,9 @@ const AddRecipeForm = () => {
           </label>
           <textarea
             id="steps"
-            name="steps" // Updated to match state variable
+            name="steps" // Name for steps field
             value={recipeData.steps}
-            onChange={handleChange}
+            onChange={handleChange} // Uses e.target.value
             className={`w-full p-2 border ${
               errors.steps ? "border-red-500" : "border-gray-300"
             } rounded`}
