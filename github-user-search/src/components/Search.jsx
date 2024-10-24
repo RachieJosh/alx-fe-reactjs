@@ -41,8 +41,8 @@ const Search = () => {
       {error && <p>{error}</p>}
       {userData && (
         <div>
-          <h2>{userData.name}</h2>
-          <img src={userData.avatar_url} alt={userData.name} />
+          <h2>{userData.login}</h2> {/* Displaying the login field */}
+          <img src={userData.avatar_url} alt={userData.login} />
           <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
             View Profile
           </a>
